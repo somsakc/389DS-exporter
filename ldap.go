@@ -20,7 +20,7 @@ func getStats(server string, port int, binddn string, bindpw string) DSData {
 	defer conn.Close()
 
 	if binddn != "" {
-		err = ldap.Bind(bindn, bindpw)
+		err = conn.Bind(binddn, bindpw)
 		if err != nil {
 			log.Fatal(err)
 		}

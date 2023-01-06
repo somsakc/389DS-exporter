@@ -439,6 +439,10 @@ func main() {
 	log.Println("Build context", version.BuildContext())
 	log.Println("Connecting to LDAP Server: ", *ldapServer, " on port: ", port)
 
+	if *ldapBindDN != "" {
+		log.Println("Using bind DN: ", *ldapBindDN)
+	}
+
 	prometheus.MustRegister(NewExporter())
 
 	http.Handle(*metricsPath, promhttp.Handler())

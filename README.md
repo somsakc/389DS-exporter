@@ -105,15 +105,17 @@ go build
 usage: 389DS-exporter [<flags>]
 
 Flags:
-  -h, --help                 Show context-sensitive help (also try --help-long and --help-man).
+  -h, --help                  Show context-sensitive help (also try --help-long and --help-man).
       --web.listen-address=":9313"
-                             Address to listen on for web interface and telemetry.
+                              Address to listen on for web interface and telemetry.
       --web.telemetry-path="/metrics"
-                             Path under which to expose metrics.
+                              Path under which to expose metrics.
       --ldap.ServerFQDN="localhost"
-                             FQDN of the target LDAP server
-      --ldap.ServerPort=389  Port to connect on LDAP server
-      --version              Show application version.
+                              FQDN of the target LDAP server
+      --ldap.ServerPort=389   Port to connect on LDAP server
+      --ldap.ServerBindDN=""  Bind DN to connect on LDAP server
+      --ldap.ServerBindPW=""  Bind password to connect on LDAP server
+      --version               Show application version.
 
 ```
 
