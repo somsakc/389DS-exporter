@@ -20,6 +20,8 @@ const (
 var (
 	port     int
 	server   string
+	binddn   string
+	bindpw   string
 	_version = "1.5"
 )
 
@@ -375,7 +377,7 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 // Collect reads stats from LDAP connection object into Prometheus objects
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
-	data := getStats(server, port)
+	data := getStats(server, port, binddn, bindpw)
 
 	ch <- prometheus.MustNewConstMetric(e.threads, prometheus.CounterValue, data.threads)
 	ch <- prometheus.MustNewConstMetric(e.readwaiters, prometheus.CounterValue, data.readwaiters)
@@ -429,6 +431,8 @@ func main() {
 
 	port = *ldapServerPort
 	server = *ldapServer
+	binddn = *ldapBindDN
+	bindpw = *ldapBindPW
 	version.Version = _version
 
 	log.Println("Starting ds_exporter", version.Info())
