@@ -420,8 +420,8 @@ func main() {
 		metricsPath    = kingpin.Flag("web.telemetry-path", "Path under which to expose metrics.").Default("/metrics").String()
 		ldapServer     = kingpin.Flag("ldap.ServerFQDN", "FQDN of the target LDAP server").Default("localhost").String()
 		ldapServerPort = kingpin.Flag("ldap.ServerPort", "Port to connect on LDAP server").Default("389").Int()
-		ldapBindDN     = kingpin.Flag("ldap.ServerBindDN", "Bind DN to connect on LDAP server").Default("").String()
-		ldapBindPW     = kingpin.Flag("ldap.ServerBindPW", "Bind password to connect on LDAP server").Default("").String()
+		ldapBindDN     = kingpin.Flag("ldap.ServerBindDN", "Bind DN to connect on LDAP server").Default(nil).String()
+		ldapBindPW     = kingpin.Flag("ldap.ServerBindPW", "Bind password to connect on LDAP server").Default(nil).String()
 	)
 
 	//log.AddFlags(kingpin.CommandLine)
