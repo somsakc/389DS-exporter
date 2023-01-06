@@ -9,15 +9,23 @@ import (
 	ldap "gopkg.in/ldap.v3"
 )
 
-func getStats(server string, port int) DSData {
-        log.Println("ldap server:",server);
-        log.Println("ldap port:",port);
+func getStats(server string, port int, binddn string, bindpw string) DSData {
+        log.Println("ldap server: ", server);
+        log.Println("ldap port: ", port);
+	log.Println("bind dn: ", binddn);
 	conn, err := ldap.Dial("tcp", fmt.Sprintf("%s:%d", server, port))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer conn.Close()
 
+	if binddn != nil {
+		err = ldap.Bind(bindn, bindpw)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	
 	searchRequest := ldap.NewSearchRequest(
 		"cn=monitor",
 		ldap.ScopeWholeSubtree, ldap.NeverDerefAliases, 0, 0, false,
